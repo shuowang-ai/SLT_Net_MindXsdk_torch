@@ -53,7 +53,7 @@ def cal_metrics(ds_name, gt_dir, pred_dir):
         'maxFm': fm['curve'].max().round(4),
     }
 
-    metrics = {f'{ds_name}/{k}': v for k, v in metrics.items()}
+    metrics = {f'{k}': v for k, v in metrics.items()}
 
     return metrics
 
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     metrics = cal_metrics(
         'MoCA',
         '/home/fandengping01/shuowang_project/SLT-Net/TestDataset_per_sq',
-        '/home/fandengping01/shuowang_project/sltnet_res/',
+        '/home/fandengping01/shuowang_project/sltnet_om_res_ms',
     )
 
     print(metrics)
