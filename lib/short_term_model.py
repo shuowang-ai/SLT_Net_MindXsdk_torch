@@ -42,7 +42,7 @@ class ImageModel(nn.Module):
     def __init__(self, args):
         super(ImageModel, self).__init__()
         self.args = args
-        self.backbone = Network(pvtv2_pretrained=self.args.pvtv2_pretrained, imgsize=self.args.trainsize)
+        self.backbone = Network(pvtv2_pretrained=self.args.pvtv2_pretrained, imgsize=352)
     def forward(self, frame):
         seg = self.backbone(frame)
         return seg
@@ -55,9 +55,9 @@ class VideoModel(nn.Module):
         self.extra_channels = 0
         print("Select mask mode: concat, num_mask={}".format(self.extra_channels))
 
-        self.backbone = Network(pvtv2_pretrained=False, imgsize=self.args.trainsize)
-        if self.args.pretrained_cod10k is not None:
-            self.load_backbone(self.args.pretrained_cod10k )
+        self.backbone = Network(pvtv2_pretrained=False, imgsize=352)
+        # if self.args.pretrained_cod10k is not None:
+        #     self.load_backbone(self.args.pretrained_cod10k )
 
         self.nlnet = NonLocalNet(in_planes=32, pyramid_type='conv')
 
